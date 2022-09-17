@@ -1,0 +1,16 @@
+@import '../../scss/style.scss';
+
+#comentarios{
+    @include estruturaComentario
+}
+.replies{
+    margin-top: 20px;
+    border-left: 2.5px solid rgb(217, 216, 216);
+    padding-left:15px;
+}
+.logo{
+    height: 38px;
+}
+
+@include cabecario-comentario;
+

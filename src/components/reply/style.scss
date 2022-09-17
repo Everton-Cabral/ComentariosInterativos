@@ -1,0 +1,13 @@
+@import '../../scss/style.scss';
+#reply{
+    @include estruturaComentario;
+}
+.logo{
+    height: 35px;
+}
+@include cabecario-comentario;
+
+.replyingTo{
+    color: $font-color-destaque;
+    font-weight: bold;
+}

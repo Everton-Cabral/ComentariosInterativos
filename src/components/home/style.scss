@@ -1,0 +1,7 @@
+@import '../../scss/style.scss';
+
+#home{
+    @include padraoInicial;
+    background-color: $background-principal;
+    padding: 20px 15px 15px 15px;
+}
