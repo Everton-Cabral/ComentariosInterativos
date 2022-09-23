@@ -1,0 +1,9 @@
+@import '../../scss/style.scss';
+.buttonScore{
+    background-color:  $background-principal;
+   @include dimensoesButton;
+}
+.score{
+    font-weight: bold;
+    margin: 0px 15px 0px 15px;
+}

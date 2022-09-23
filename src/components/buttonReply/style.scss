@@ -1,0 +1,8 @@
+@import '../../scss/style.scss';
+.buttonReply{
+    @include dimensoesButton;
+    font-weight: bold;
+}
+img{
+    margin-right: 5px;
+}

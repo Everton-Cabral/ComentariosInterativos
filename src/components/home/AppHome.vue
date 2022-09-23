@@ -2,7 +2,8 @@
     <div id="home">
         <AppComentarios v-for="comentario in comentarios" :key="comentario.id"
         :comentario = "comentario"/>
-        
+       
+        <AppWrite  />
     </div>
     
 </template>
@@ -10,9 +11,10 @@
 <script>
 
     import AppComentarios from '../comentarios/AppComentarios.vue';
+    import AppWrite from '../write/AppWrite.vue';
 
 export default {
-    components: { AppComentarios },
+    components: { AppComentarios, AppWrite },
     
     computed:{
         comentarios(){

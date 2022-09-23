@@ -1,0 +1,30 @@
+@import '../../scss/style.scss';
+
+.write{
+    @include estruturaComentario;
+    @include alinhamento;
+    @extend .d-flex;
+    @extend .jus-cont-space-between;
+    flex-wrap: wrap;
+}
+.comentario-usuario{
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+    @extend .b-r-10;
+    padding: 10px;
+    font-family: $font-family-comentario;
+    border: 0.5px solid $font-color-comentario; 
+}
+.logo{
+    height: 38px;
+}
+.send{
+    height: 40px;
+    width: 100px;
+    @extend .b-r-10;
+    border: none;
+    background-color: $font-color-destaque;
+    color: white;
+    @extend .font-bold;
+}

@@ -1,5 +1,5 @@
 @import '../../scss/style.scss';
-#reply{
+.reply{
     @include estruturaComentario;
 }
 .logo{
@@ -9,5 +9,22 @@
 
 .replyingTo{
     color: $font-color-destaque;
-    font-weight: bold;
+    @extend .font-bold;
+}
+.footer{
+    @include alinhamento;
+    @extend .jus-cont-space-between;
+}
+.identifier{
+    margin: 0px 10px 0px -5px;
+    background-color: $font-color-destaque;
+    color: white;
+    font-family: $font-family-comentario;
+    font-size: 13px;
+    width: 32px;
+    height: 17px;
+    @extend .d-flex;
+    @extend .jus-cont-center;
+    border-radius: 2px;
+    text-align: center;
 }

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&family=Rubik:wght@400;500;600&display=swap');
 
+
 $background-principal:hsl(228, 33%, 97%);
 $background-appComentario: white;
 $font-color-destaque:hsl(238, 40%, 52%);
@@ -7,15 +8,77 @@ $font-color-comentario: hsl(211, 10%, 45%);
 $font-family-comentario: 'Rubik', sans-serif;
 $font-color-comentario-cabecario-usarname:hsl(212, 24%, 26%);
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-@mixin padraoInicial{
+.d-flex{
+    display: flex;
+}
+.a-i-center{
+    align-items: center;
+}
+
+.font-bold{
+    font-weight: bold;
+}
+.m-top-20{
+    margin-top: 20px;
+}
+
+@each $justify-content in (center, space-between) {
+    .jus-cont-#{$justify-content } {
+        justify-content: $justify-content ;
+    }
+}
+
+@each $border-radius in (15,10){
+    .b-r-#{$border-radius}{
+        border-radius: $border-radius+px;
+    }
+}
+
+
+// @each $step in (25, 50, 75, 100) {
+//     .width-#{$step} {
+//         width: $step * 1%;
+//     }
+
+//     .height-#{$step} {
+//         height: $step * 1%;
+//     }
+// }
+
+
+
+@mixin padraoInicial {
     margin: 0px;
     padding: 0px;
 }
+
+@mixin alinhamento {
+    @extend .d-flex;
+    @extend .a-i-center;
+}
+
+
+
+@mixin dimensoesButton {
+    height: 40px;
+    width: 90px;
+    @include alinhamento;
+    @extend .jus-cont-center;
+    margin-top: 12px;
+    color: $font-color-destaque;
+    @extend .b-r-10;
+}
+
 @mixin estruturaComentario {
     background-color: $background-appComentario;
-    margin-top: 20px;
-    border-radius: 15px;
+    @extend .m-top-20;
+    @extend .b-r-15;
     padding: 15px;
     font-family: $font-family-comentario;
     font-weight: 400;
@@ -23,14 +86,15 @@ $font-color-comentario-cabecario-usarname:hsl(212, 24%, 26%);
     color:  $font-color-comentario;
 }
 
+
 @mixin cabecario-comentario {
     .cabecario{
-        display: flex;
-        align-items: center;
+       @include alinhamento;
         .username{
             margin: 0px 15px 0px 10px;
             color:$font-color-comentario-cabecario-usarname;
-            font-weight: bold;
+            @extend .font-bold;
         }
     }
 }
+

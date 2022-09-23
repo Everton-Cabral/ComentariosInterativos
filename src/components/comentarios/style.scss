@@ -1,8 +1,9 @@
 @import '../../scss/style.scss';
 
-#comentarios{
+.comentarios {
     @include estruturaComentario
 }
+
 .replies{
     margin-top: 20px;
     border-left: 2.5px solid rgb(217, 216, 216);
@@ -11,6 +12,13 @@
 .logo{
     height: 38px;
 }
-
 @include cabecario-comentario;
+
+.footer{
+    @include alinhamento;
+    color: $font-color-destaque;
+    @extend .font-bold;
+    @extend .jus-cont-space-between;
+}
+
 
