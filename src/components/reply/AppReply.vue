@@ -4,7 +4,7 @@
             
             <img class="logo" :src="require('@/assets'+reply.user.image.png)" alt="Logo">
            <span class="username">{{reply.user.username}}</span> 
-           <span class="identifier">you</span>
+           <span class="identifier" v-show="loggedInUser">you</span>
            <span>{{reply.createdAt}}</span> 
         </div>
         <div class="comentario">
@@ -12,21 +12,38 @@
         </div>
         <div class="footer">
             <AppButtonScore :score="reply.score"/>
-            <AppButtonReply />
+
+            <div class="leftFooter">
+                <AppButtonReply  v-show="!loggedInUser"/>
+                <AppButtonDelete v-show="loggedInUser"/>
+                <AppButtonEdit v-show="loggedInUser"/>
+            </div>
         </div>
         
-       
+      
     </div>
 </template>
 
 <script>
     import AppButtonScore from '../buttonScore/AppButtonScore.vue';
     import AppButtonReply from '../buttonReply/AppButtonReply.vue';
+    import AppButtonDelete from '../buttonDelete/AppButtonDelete.vue';
+    import AppButtonEdit from '../buttonEdit/AppButtonEdit.vue'
 
 export default {
-    components:{ AppButtonScore, AppButtonReply},
+    components:{ AppButtonScore, AppButtonReply, AppButtonDelete, AppButtonEdit },
     props:{
         reply: Object,
+    },
+    computed:{
+        loggedInUser(){
+            // Estudar Mutations, acho que seria a melhor opção nesse caso
+           let resultado
+            if(this.$store.state.data.currentUser.username === this.reply.user.username ){
+                    resultado = true
+            }
+            return resultado
+        }
     }
 }
 </script>

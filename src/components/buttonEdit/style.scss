@@ -1,7 +1,11 @@
 @import '../../scss/style.scss';
-.buttonReply{
+
+.buttonEdit{
     @include dimensoesButton;
-    font-weight: bold;
+}
+span{
+    color: $font-color-destaque;
+    @extend .font-bold;
 }
 img{
     @extend .m-right-5;

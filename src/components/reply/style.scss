@@ -15,6 +15,10 @@
     @include alinhamento;
     @extend .jus-cont-space-between;
 }
+.leftFooter{
+    @extend .d-flex;
+    @extend .a-i-center;
+}
 .identifier{
     margin: 0px 10px 0px -5px;
     background-color: $font-color-destaque;

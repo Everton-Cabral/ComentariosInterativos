@@ -7,6 +7,7 @@ $font-color-destaque:hsl(238, 40%, 52%);
 $font-color-comentario: hsl(211, 10%, 45%);
 $font-family-comentario: 'Rubik', sans-serif;
 $font-color-comentario-cabecario-usarname:hsl(212, 24%, 26%);
+$font-color-button-delete: hsl(358, 79%, 66%);
 
 * {
     margin: 0;
@@ -24,8 +25,14 @@ $font-color-comentario-cabecario-usarname:hsl(212, 24%, 26%);
 .font-bold{
     font-weight: bold;
 }
-.m-top-20{
-    margin-top: 20px;
+@each $margin-top in (15,20){
+    .m-top-#{$margin-top}{
+        margin-top: $margin-top+px;
+    }
+}
+
+.m-right-5{
+    margin-right: 5px;
 }
 
 @each $justify-content in (center, space-between) {
@@ -39,18 +46,6 @@ $font-color-comentario-cabecario-usarname:hsl(212, 24%, 26%);
         border-radius: $border-radius+px;
     }
 }
-
-
-// @each $step in (25, 50, 75, 100) {
-//     .width-#{$step} {
-//         width: $step * 1%;
-//     }
-
-//     .height-#{$step} {
-//         height: $step * 1%;
-//     }
-// }
-
 
 
 @mixin padraoInicial {
