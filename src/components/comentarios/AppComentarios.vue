@@ -22,17 +22,25 @@
             <div class="footer">
                 <AppButtonScore :score="comentario.score" />
 
-                <AppButtonReply/>
+                <AppButtonReply @click.native="writeAnswer()"/>
             </div>
+
         </div>
 
+        <AppWrite :comentarioId="comentario.id" 
+            buttonName="REPLY"
+            v-show="write"      
+        />
+
         <div class="replies">
+
             <AppReply
                 v-for="(reply, i) in comentario.replies"
                 :key="i"
                 :reply ="reply"
             />
-        </div>
+            
+        </div> 
     </div>
 </template>
 
@@ -40,8 +48,9 @@
 import AppReply from '../reply/AppReply.vue';
 import AppButtonScore from '../buttonScore/AppButtonScore.vue';
 import AppButtonReply from '../buttonReply/AppButtonReply.vue';
+import AppWrite from '../write/AppWrite.vue';
 export default {    
-    components:{ AppReply, AppButtonScore, AppButtonReply },
+    components:{ AppReply, AppButtonScore, AppButtonReply, AppWrite },
 
     props:{
         comentario: {
@@ -49,11 +58,20 @@ export default {
             required: true
         }
     },
-
+    data(){
+        return{
+            write: false
+        }
+    },
+    methods:{
+        writeAnswer(){
+            this.write = !this.write
+        }
+    },
     computed: {
         userProfilePic () {
             return require("@/assets" + this.comentario.user.image.webp)
-        }
+        },   
     }
 }
 </script>

@@ -5,7 +5,7 @@
             <img class="logo" :src="require('@/assets'+reply.user.image.png)" alt="Logo">
            <span class="username">{{reply.user.username}}</span> 
            <span class="identifier" v-show="loggedInUser">you</span>
-           <span>{{reply.createdAt}}</span> 
+           <span>{{createdAt}}</span> 
         </div>
         <div class="comentario">
            <span class="replyingTo">{{'@'+reply.replyingTo}} </span>{{reply.content}}
@@ -19,8 +19,8 @@
                 <AppButtonEdit v-show="loggedInUser"/>
             </div>
         </div>
-        
-      
+   
+     
     </div>
 </template>
 
@@ -34,15 +34,25 @@ export default {
     components:{ AppButtonScore, AppButtonReply, AppButtonDelete, AppButtonEdit },
     props:{
         reply: Object,
+        
     },
+  
     computed:{
         loggedInUser(){
-            // Estudar Mutations, acho que seria a melhor opção nesse caso
+            
            let resultado
             if(this.$store.state.data.currentUser.username === this.reply.user.username ){
                     resultado = true
             }
             return resultado
+        },
+        createdAt(){
+            var createdDay = this.reply.createdAt
+            var  today = new Date('2022/10/20')
+            const diff = Math.abs(today - createdDay)
+            const days = Math.ceil(diff / (1000 * 60 * 60 * 24))
+
+            return days
         }
     }
 }
