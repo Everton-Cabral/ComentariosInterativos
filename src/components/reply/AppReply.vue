@@ -47,12 +47,24 @@ export default {
             return resultado
         },
         createdAt(){
-            var createdDay = this.reply.createdAt
-            var  today = new Date('2022/10/20')
-            const diff = Math.abs(today - createdDay)
-            const days = Math.ceil(diff / (1000 * 60 * 60 * 24))
+            let resultado
+           if(typeof this.reply.createdAt === 'string'){
+             resultado = this.reply.createdAt
+           } else{
 
-            return days
+               var createdDay = this.reply.createdAt
+               var  today = new Date('2022/09/30') //Insira para que hoje seja uma data futura para teste
+               const diff = Math.abs(today - createdDay)
+               resultado = Math.ceil(diff / (1000 * 60 * 60 * 24))
+
+               if(resultado <= 7){
+                resultado = `${resultado} days ago`
+               }
+
+              
+           }
+
+            return resultado
         }
     }
 }

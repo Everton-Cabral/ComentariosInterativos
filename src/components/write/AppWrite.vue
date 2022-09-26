@@ -49,6 +49,7 @@ export default {
         
             }
             this.$store.commit('reply', params)
+            this.$emit('finishAnswer')
             
         }
     },

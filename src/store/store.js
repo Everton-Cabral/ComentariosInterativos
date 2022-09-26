@@ -15,7 +15,7 @@ export default new Vuex.Store({
                 if(c.id == params.idComment){
                     params = {
                         content: params.content,
-                        createdAt: new Date(),
+                        createdAt: 'today',
                         score: 0,
                         replyingTo: c.user.username,
                         user:{

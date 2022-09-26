@@ -29,7 +29,8 @@
 
         <AppWrite :comentarioId="comentario.id" 
             buttonName="REPLY"
-            v-show="write"      
+            v-show="write" 
+            @finishAnswer="writeAnswer()"     
         />
 
         <div class="replies">
