@@ -12,55 +12,56 @@
          </span>
         
          
-        <button class="button" v-if="buttonName" 
-            @click="reply()"> 
-            REPLY
-        </button>
+         <AppButtonSubmit :buttonName="buttonNameSubmit" @click.native="reply()"/>
 
-        <button class="button" v-else>SEND</button>
+      
         
         
    </div>
 </template>
 
 <script>
+import AppButtonSubmit from '../buttonSubmit/AppButtonSubmit.vue'
 export default {
-    props:{
-        comentarioId:{
+    props: {
+        comentarioId: {
             type: Number,
             require: true
         },
-        buttonName:{
+        buttonName: {
             type: String,
             require: true
         }
     },
-    data(){
-        return{
-            contentReply: '',
-          
-        }
+    data() {
+        return {
+            contentReply: "",
+        };
     },
-    methods:{
-        reply(){
+    methods: {
+        reply() {
             let params = {
                 idComment: this.comentarioId,
                 content: this.contentReply,
-        
-            }
-            this.$store.commit('reply', params)
-            this.$emit('finishAnswer')
-            
+            };
+            this.$store.commit("reply", params);
+            this.$emit("finishAnswer");
         }
     },
-    computed:{
-        currentUser(){
-            return  this.$store.state.data.currentUser
+    computed: {
+        currentUser() {
+            return this.$store.state.data.currentUser;
         },
-        imgCurrentUser(){
-            return require('@/assets'+this.currentUser.image.webp)
+        imgCurrentUser() {
+            return require("@/assets" + this.currentUser.image.webp);
+        },
+        buttonNameSubmit(){
+            let name
+            this.buttonName ? name = this.buttonName : name = 'SEND'
+            return name
         }
-    }
+    },
+    components: { AppButtonSubmit }
 }
 </script>
 

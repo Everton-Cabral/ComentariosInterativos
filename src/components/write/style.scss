@@ -19,12 +19,3 @@
 .logo{
     height: 38px;
 }
-.button{
-    height: 40px;
-    width: 100px;
-    @extend .b-r-10;
-    border: none;
-    background-color: $font-color-destaque;
-    color: white;
-    @extend .font-bold;
-}
