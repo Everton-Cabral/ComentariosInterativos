@@ -25,6 +25,10 @@
 import AppButtonSubmit from '../buttonSubmit/AppButtonSubmit.vue'
 export default {
     props: {
+        comentario: {
+            type: Object,
+            require: true
+        },
         comentarioId: {
             type: Number,
             require: true

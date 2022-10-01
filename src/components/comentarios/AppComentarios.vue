@@ -27,7 +27,8 @@
 
         </div>
 
-        <AppWrite :comentarioId="comentario.id" 
+        <AppWrite :comentario="comentario" 
+            :comentarioId="comentario.id" 
             :comentarioUsername="comentario.user.username"
             buttonName="REPLY"
             v-show="write" 
@@ -42,6 +43,8 @@
                 :reply ="reply"
                 :comentarioId = "comentario.id"
             />
+
+            
             
         </div> 
     </div>
@@ -52,6 +55,7 @@ import AppReply from '../reply/AppReply.vue';
 import AppButtonScore from '../buttonScore/AppButtonScore.vue';
 import AppButtonReply from '../buttonReply/AppButtonReply.vue';
 import AppWrite from '../write/AppWrite.vue';
+
 export default {    
     components:{ AppReply, AppButtonScore, AppButtonReply, AppWrite },
 

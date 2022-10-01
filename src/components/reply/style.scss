@@ -15,6 +15,7 @@
 .footer{
     @include alinhamento;
     @extend .jus-cont-space-between;
+    margin-bottom: 10px;
 }
 .leftFooter{
     @extend .d-flex;
@@ -48,4 +49,9 @@ textarea{
 em{
     font-style: normal;
     margin-right: 0px;
+}
+.comentario{
+    padding-right: 1px;
+    height: auto;
+    flex-wrap: wrap;
 }

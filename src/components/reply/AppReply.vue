@@ -1,56 +1,70 @@
 <template>
-    <div class="reply">
-        <div class="cabecario">
-            
-            <img class="logo" :src="require('@/assets'+reply.user.image.png)" alt="Logo">
-           <span class="username">{{reply.user.username}}</span> 
-           <span class="identifier" v-show="loggedInUser">you</span>
-           <span>{{reply.createdAt}}</span> 
-        </div>
-   
-        <div class="comentario" v-if="edit">
+    <div>
+        <div class="reply">
 
-            <textarea name="replyContent" 
-                cols="30" rows="10" 
-                v-model="content">
-               
-            </textarea>
-        </div>
-
-        <div class="comentario" v-else>
-           <span class="replyingTo">{{'@'+reply.replyingTo}} </span>
-          
-           {{ reply.content }}
-
-           
-          <!-- <hr>
-            <em v-for="(word, i) in reply.content.split(' ')" :key="i" 
-                :class="markedWords(word)">
-                    {{word}}
-            </em> -->
-      
-        </div>
-
-        <div class="footer">
-
-            <AppButtonScore :score="reply.score" v-show="!edit"/>
-
-            <div class="leftFooter">
-                <AppButtonReply  v-show="!loggedInUser"/>
-                <AppButtonDelete v-show="loggedInUser"/>
-                <AppButtonEdit v-show="loggedInUser" @click.native="editComment()"/>
+            <div class="cabecario">
                 
+            <img class="logo" :src="require('@/assets'+reply.user.image.png)" alt="Logo">
+            <span class="username">{{reply.user.username}}</span> 
+            <span class="identifier" v-show="loggedInUser">you</span>
+            <span>{{reply.createdAt}}</span> 
+
             </div>
 
-            <AppButtonSubmit buttonName="UPDATE"
-                 v-show="edit"
-                @click.native="updateReply()"     
-            />
+            <div class="comentario" v-if="edit">
 
+                <textarea name="replyContent" 
+                    cols="30" rows="10" 
+                    v-model="content">          
+                </textarea>
+
+            </div>
+            <div class="comentario" v-else>
+                
+                <span class="replyingTo">
+                    {{'@'+reply.replyingTo}} 
+                </span>
+            
+            {{ reply.content }}
+
+            
+            <!-- <hr>
+                <em v-for="(word, i) in reply.content.split(' ')" :key="i" 
+                    :class="markedWords(word)">
+                        {{word}}
+                </em> -->
+        
+            </div>
+
+            <div class="footer">
+
+                <AppButtonScore :score="reply.score" v-show="!edit"/>
+
+                <div class="leftFooter">
+                    <AppButtonReply  v-show="!loggedInUser" @click.native="showReplyReply()"/>
+                    <AppButtonDelete v-show="loggedInUser"/>
+                    <AppButtonEdit v-show="loggedInUser" @click.native="editComment()"/>
+                    
+                </div>
+
+                <AppButtonSubmit buttonName="UPDATE"
+                    v-show="edit"
+                    @click.native="updateReply()"     
+                />
+
+            </div>
+          
         </div>
-   
-     
+
+        <AppWrite v-show="replyReply"
+            :comentarioId="comentarioId"
+            :comentarioUsername="reply.user.username"
+            buttonName = "REPLY"
+        />
+
     </div>
+       
+    
 </template>
 
 <script>
@@ -59,9 +73,10 @@
     import AppButtonDelete from '../buttonDelete/AppButtonDelete.vue';
     import AppButtonEdit from '../buttonEdit/AppButtonEdit.vue';
     import AppButtonSubmit from '../buttonSubmit/AppButtonSubmit.vue';
+import AppWrite from '../write/AppWrite.vue';
 
 export default {
-    components:{ AppButtonScore, AppButtonReply, AppButtonDelete, AppButtonEdit, AppButtonSubmit },
+    components:{ AppButtonScore, AppButtonReply, AppButtonDelete, AppButtonEdit, AppButtonSubmit, AppWrite },
     props:{
         reply: {
             type: Object,
@@ -76,7 +91,8 @@ export default {
     data(){
         return{
             content: `@${this.reply.replyingTo}, ${this.reply.content}`,
-            edit: false,    
+            edit: false,   
+            replyReply: false 
         }
     },
 
@@ -84,6 +100,9 @@ export default {
         editComment(){
             this.edit = true
            
+        },
+        showReplyReply(){
+            this.replyReply =  !this.replyReply
         },
         // markedWords(word){
         //     if( word == word.match(/@+([a-z,]*)/gmi)){
