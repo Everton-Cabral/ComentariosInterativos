@@ -1,6 +1,7 @@
 @import '../../scss/style.scss';
 .reply{
     @include estruturaComentario;
+  
 }
 .logo{
     height: 35px;
@@ -42,4 +43,9 @@ textarea{
     font-weight: 400;
     font-size: 16px;
     color:  $font-color-comentario;
+}
+
+em{
+    font-style: normal;
+    margin-right: 0px;
 }

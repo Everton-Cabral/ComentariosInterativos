@@ -13,13 +13,22 @@
             <textarea name="replyContent" 
                 cols="30" rows="10" 
                 v-model="content">
+               
             </textarea>
         </div>
 
         <div class="comentario" v-else>
            <span class="replyingTo">{{'@'+reply.replyingTo}} </span>
+          
            {{ reply.content }}
+
            
+          <!-- <hr>
+            <em v-for="(word, i) in reply.content.split(' ')" :key="i" 
+                :class="markedWords(word)">
+                    {{word}}
+            </em> -->
+      
         </div>
 
         <div class="footer">
@@ -30,10 +39,13 @@
                 <AppButtonReply  v-show="!loggedInUser"/>
                 <AppButtonDelete v-show="loggedInUser"/>
                 <AppButtonEdit v-show="loggedInUser" @click.native="editComment()"/>
-                <AppButtonSubmit buttonName="UPDATE" v-show="edit"/>
-                
                 
             </div>
+
+            <AppButtonSubmit buttonName="UPDATE"
+                 v-show="edit"
+                @click.native="updateReply()"     
+            />
 
         </div>
    
@@ -51,18 +63,42 @@
 export default {
     components:{ AppButtonScore, AppButtonReply, AppButtonDelete, AppButtonEdit, AppButtonSubmit },
     props:{
-        reply: Object,
+        reply: {
+            type: Object,
+            require: true
+        },
+        comentarioId: {
+            type: Number,
+            require: true
+        }
         
     },
     data(){
         return{
             content: `@${this.reply.replyingTo}, ${this.reply.content}`,
-            edit: false
+            edit: false,    
         }
     },
+
     methods:{
         editComment(){
             this.edit = true
+           
+        },
+        // markedWords(word){
+        //     if( word == word.match(/@+([a-z,]*)/gmi)){
+        //         return 'replyingTo'
+        //     }
+        // }
+        updateReply(){
+            let params = {
+                idComment: this.comentarioId,
+                idReply: this.reply.id,
+                content : this.content
+            };
+            console.log(this.reply.id)
+            this.$store.commit('editReply', params);
+            this.edit = false
         }
     },
     computed:{
@@ -74,7 +110,7 @@ export default {
             }
             return resultado
         },
-       
+ 
     }
 }
 </script>

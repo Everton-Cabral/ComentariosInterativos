@@ -5,6 +5,7 @@
                 cols="30" rows="10" 
                 placeholder="Add a coment..."
                 v-model="contentReply">
+               
         </textarea>
 
         <span> 
@@ -28,6 +29,10 @@ export default {
             type: Number,
             require: true
         },
+        comentarioUsername:{
+            type: String,
+            require: true
+        },
         buttonName: {
             type: String,
             require: true
@@ -35,17 +40,23 @@ export default {
     },
     data() {
         return {
-            contentReply: "",
+            contentReply: this.comentarioUsername ? `@${this.comentarioUsername}` : '',
+           
         };
     },
     methods: {
         reply() {
             let params = {
+
                 idComment: this.comentarioId,
-                content: this.contentReply,
+                content: this.contentReply.replace(`@${this.comentarioUsername}`, ''),
+
             };
+            
             this.$store.commit("reply", params);
             this.$emit("finishAnswer");
+            this.contentReply =  this.comentarioUsername ? `@${this.comentarioUsername}` : '';
+            
         }
     },
     computed: {
@@ -59,7 +70,10 @@ export default {
             let name
             this.buttonName ? name = this.buttonName : name = 'SEND'
             return name
-        }
+        },
+      
+     
+    
     },
     components: { AppButtonSubmit }
 }

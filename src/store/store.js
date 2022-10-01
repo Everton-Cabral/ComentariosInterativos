@@ -7,6 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state:{
         data,
+        primaryKey: 10
     },
     mutations:{
         reply(state, params){
@@ -14,6 +15,7 @@ export default new Vuex.Store({
              state.data.comments.filter((c)=>{
                 if(c.id == params.idComment){
                     params = {
+                        id: state.primaryKey+1,
                         content: params.content,
                         createdAt: 'today',
                         score: 0,
@@ -32,6 +34,19 @@ export default new Vuex.Store({
                 }
              })
                        
+        },
+
+        editReply(state, params){
+            state.data.comments.filter((c)=>{
+               if(c.id == params.idComment){
+                    c.replies.filter((r)=>{
+                       if(r.id == params.idReply) {
+                            r.content = params.content
+                       }
+                    })
+               } 
+            })
+           
         }
     }
         

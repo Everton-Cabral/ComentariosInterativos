@@ -28,6 +28,7 @@
         </div>
 
         <AppWrite :comentarioId="comentario.id" 
+            :comentarioUsername="comentario.user.username"
             buttonName="REPLY"
             v-show="write" 
             @finishAnswer="writeAnswer()"     
@@ -39,6 +40,7 @@
                 v-for="(reply, i) in comentario.replies"
                 :key="i"
                 :reply ="reply"
+                :comentarioId = "comentario.id"
             />
             
         </div> 
