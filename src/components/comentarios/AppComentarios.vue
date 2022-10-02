@@ -27,8 +27,7 @@
 
         </div>
 
-        <AppWrite :comentario="comentario" 
-            :comentarioId="comentario.id" 
+        <AppWrite :comentarioId="comentario.id" 
             :comentarioUsername="comentario.user.username"
             buttonName="REPLY"
             v-show="write" 

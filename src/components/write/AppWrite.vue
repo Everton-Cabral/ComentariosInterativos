@@ -14,9 +14,6 @@
         
          
          <AppButtonSubmit :buttonName="buttonNameSubmit" @click.native="reply()"/>
-
-      
-        
         
    </div>
 </template>
@@ -25,10 +22,7 @@
 import AppButtonSubmit from '../buttonSubmit/AppButtonSubmit.vue'
 export default {
     props: {
-        comentario: {
-            type: Object,
-            require: true
-        },
+
         comentarioId: {
             type: Number,
             require: true
@@ -53,12 +47,14 @@ export default {
             let params = {
 
                 idComment: this.comentarioId,
+                replyingTo: this.comentarioUsername,
                 content: this.contentReply.replace(`@${this.comentarioUsername}`, ''),
 
             };
             
             this.$store.commit("reply", params);
             this.$emit("finishAnswer");
+            this.$emit("noShowReplyReply");
             this.contentReply =  this.comentarioUsername ? `@${this.comentarioUsername}` : '';
             
         }

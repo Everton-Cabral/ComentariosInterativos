@@ -60,6 +60,7 @@
             :comentarioId="comentarioId"
             :comentarioUsername="reply.user.username"
             buttonName = "REPLY"
+            @noShowReplyReply="showReplyReply()"
         />
 
     </div>

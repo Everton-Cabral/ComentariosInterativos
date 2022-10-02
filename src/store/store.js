@@ -19,7 +19,7 @@ export default new Vuex.Store({
                         content: params.content,
                         createdAt: 'today',
                         score: 0,
-                        replyingTo: c.user.username,
+                        replyingTo: params.replyingTo ? params.replyingTo : c.user.username,
                         user:{
                             image:{
                                 png: state.data.currentUser.image.png,
