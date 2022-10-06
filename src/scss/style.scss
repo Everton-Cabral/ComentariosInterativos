@@ -8,6 +8,7 @@ $font-color-comentario: hsl(211, 10%, 45%);
 $font-family-comentario: 'Rubik', sans-serif;
 $font-color-comentario-cabecario-usarname:hsl(212, 24%, 26%);
 $font-color-button-delete: hsl(358, 79%, 66%);
+$font-color-button-delete-edit: hsl(357, 100%, 86%);
 
 * {
     margin: 0;
@@ -24,6 +25,9 @@ $font-color-button-delete: hsl(358, 79%, 66%);
 
 .font-bold{
     font-weight: bold;
+}
+.opacity{
+    opacity: 0.5;
 }
 @each $margin-top in (15,20){
     .m-top-#{$margin-top}{
@@ -46,6 +50,7 @@ $font-color-button-delete: hsl(358, 79%, 66%);
         border-radius: $border-radius+px;
     }
 }
+
 
 
 @mixin padraoInicial {

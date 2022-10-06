@@ -2,11 +2,10 @@
 
 .buttonEdit{
     @include dimensoesButton;
-}
-span{
     color: $font-color-destaque;
     @extend .font-bold;
 }
+
 img{
     @extend .m-right-5;
 }

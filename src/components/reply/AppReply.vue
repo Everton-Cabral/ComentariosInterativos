@@ -42,8 +42,15 @@
 
                 <div class="leftFooter">
                     <AppButtonReply  v-show="!loggedInUser" @click.native="showReplyReply()"/>
-                    <AppButtonDelete v-show="loggedInUser"/>
-                    <AppButtonEdit v-show="loggedInUser" @click.native="editComment()"/>
+                    
+                    <AppButtonDelete v-show="loggedInUser"
+                        :edit = "edit"
+                    />
+
+                    <AppButtonEdit v-show="loggedInUser"
+                         @click.native="editComment()"
+                         :edit = "edit"
+                    />
                     
                 </div>
 
@@ -116,7 +123,7 @@ export default {
                 idReply: this.reply.id,
                 content : this.content
             };
-            console.log(this.reply.id)
+            
             this.$store.commit('editReply', params);
             this.edit = false
         }

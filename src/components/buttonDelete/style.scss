@@ -1,11 +1,10 @@
 @import '../../scss/style.scss';
 .buttonDelete{
     @extend .m-top-15;
-}
-span{
-    color: $font-color-button-delete;
     @extend .font-bold;
+    color: $font-color-button-delete; 
 }
+
 img{
     @extend .m-right-5;
 }
