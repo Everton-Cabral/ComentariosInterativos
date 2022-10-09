@@ -17,41 +17,9 @@
     @extend .jus-cont-space-between;
     margin-bottom: 10px;
 }
-.leftFooter{
-    @extend .d-flex;
-    @extend .a-i-center;
-}
-.identifier{
-    margin: 0px 10px 0px -5px;
-    background-color: $font-color-destaque;
-    color: white;
-    font-family: $font-family-comentario;
-    font-size: 13px;
-    width: 32px;
-    height: 17px;
-    @extend .d-flex;
-    @extend .jus-cont-center;
-    border-radius: 2px;
-    text-align: center;
-}
-textarea{
-    @extend .m-top-15;
-    @extend .b-r-10;
-    width: 100%;
-    // height: 150px;
-    padding: 3px;
-    font-family: $font-family-comentario;
-    font-weight: 400;
-    font-size: 16px;
-    color:  $font-color-comentario;
-}
+
 
 em{
     font-style: normal;
     margin-right: 0px;
-}
-.comentario{
-    padding-right: 1px;
-    height: auto;
-    flex-wrap: wrap;
 }

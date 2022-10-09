@@ -14,8 +14,9 @@ export default new Vuex.Store({
 
              state.data.comments.filter((c)=>{
                 if(c.id == params.idComment){
+                    state.primaryKey++
                     params = {
-                        id: state.primaryKey+1,
+                        id: state.primaryKey,
                         content: params.content,
                         createdAt: 'today',
                         score: 0,
@@ -47,7 +48,36 @@ export default new Vuex.Store({
                } 
             })
            
+        },
+
+        comment(state, params){
+            state.primaryKey++
+          let  paramsComment = {
+                id: state.primaryKey,
+                content: params,
+                createdAt: 'Today',
+                score: 0,
+                user: {
+                    image: {
+                      png: state.data.currentUser.image.png,
+                      webp: state.data.currentUser.image.webp
+                    },
+                    username: state.data.currentUser.username
+                  },
+                replies: [],
+            }
+            state.data.comments.push(paramsComment)
+        },
+
+        editComment(state, params){
+            state.data.comments.filter((c)=>{
+                if(c.id == params.idComment){
+                    c.content = params.content
+                }
+            })
         }
-    }
+
+    },
+
         
 })

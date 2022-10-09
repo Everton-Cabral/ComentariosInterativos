@@ -1,5 +1,5 @@
 <template>
-    <div class="buttonEdit" :class="opacity">
+    <div class="buttonEdit">
         <img src="@/assets/images/icon-edit.svg" alt="Edit">
         <span>Edit</span>
 
@@ -8,21 +8,8 @@
 
 <script>
 export default {
-props:{
-    edit: {
-        type: Boolean,
-        require: true
-    }
-},
-computed:{
-        opacity(){
-            let resultado = ''
-            if(this.edit){
-                resultado = 'opacity'
-            }
-            return resultado
-        }
-    }
+
+
 }
 </script>
 

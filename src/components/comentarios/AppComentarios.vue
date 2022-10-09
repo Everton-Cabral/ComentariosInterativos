@@ -12,17 +12,46 @@
                     {{ comentario.user.username }}
                 </span>
 
+                <span class="identifier" v-show="loggedInUser">you</span>
+
                 {{ comentario.createdAt }} 
             </div>
 
-            <div class="comentario">
+            <div class="comentario" v-if="edit">
+
+                <textarea name="replyContent" 
+                    cols="30" rows="10" 
+                    v-model="content">          
+                </textarea>
+
+            </div>
+
+            <div v-else class="comentario">
                 {{ comentario.content }}
             </div>
 
             <div class="footer">
-                <AppButtonScore :score="comentario.score" />
+                <AppButtonScore v-show="!edit" :score="comentario.score" />
 
-                <AppButtonReply @click.native="writeAnswer()"/>
+                <div class="leftFooter" :class="opacity">
+
+                    <AppButtonReply  v-show="!loggedInUser"
+                        @click.native="writeAnswer()"
+                    />
+    
+                    <AppButtonDelete v-show="loggedInUser"/>
+    
+                    <AppButtonEdit v-show="loggedInUser"
+                        @click.native="editComment"    
+                    />
+
+                </div>
+
+                <AppButtonSubmit buttonName="UPDATE"
+                    v-show="edit"
+                    @click.native="updateComment()"    
+                />
+
             </div>
 
         </div>
@@ -53,31 +82,65 @@
 import AppReply from '../reply/AppReply.vue';
 import AppButtonScore from '../buttonScore/AppButtonScore.vue';
 import AppButtonReply from '../buttonReply/AppButtonReply.vue';
+import AppButtonEdit from '../buttonEdit/AppButtonEdit.vue'
+import AppButtonDelete from '../buttonDelete/AppButtonDelete.vue';
+import AppButtonSubmit from '../buttonSubmit/AppButtonSubmit.vue'
 import AppWrite from '../write/AppWrite.vue';
 
 export default {    
-    components:{ AppReply, AppButtonScore, AppButtonReply, AppWrite },
+    components:{ AppReply, AppButtonScore, AppButtonReply, AppButtonEdit ,AppButtonDelete, AppButtonSubmit ,AppWrite},
 
     props:{
         comentario: {
             type: Object,
             required: true
+        },
+        currentUser:{
+            type: Object,
+            require: true
         }
     },
     data(){
         return{
-            write: false
+            write: false,
+            content: this.comentario.content,
+            edit: false
         }
     },
     methods:{
         writeAnswer(){
             this.write = !this.write
+        },
+        editComment(){
+            this.edit = !this.edit
+        },
+        updateComment(){
+             let params = {
+                idComment: this.comentario.id,
+                content: this.content
+            }
+            this.$store.commit('editComment', params);
+            this.edit = false
         }
     },
     computed: {
-        userProfilePic () {
+        userProfilePic() {
             return require("@/assets" + this.comentario.user.image.webp)
         },   
+        loggedInUser(){
+            let resultado
+            if(this.$store.state.data.currentUser.username === this.comentario.user.username ){
+                    resultado = true
+            }
+            return resultado
+        },
+        opacity(){
+            let resultado = ''
+            if(this.edit){
+                resultado = 'opacity'
+            }
+            return resultado
+        }
     }
 }
 </script>

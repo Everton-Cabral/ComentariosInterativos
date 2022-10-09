@@ -40,16 +40,13 @@
 
                 <AppButtonScore :score="reply.score" v-show="!edit"/>
 
-                <div class="leftFooter">
+                <div class="leftFooter" :class="opacity">
                     <AppButtonReply  v-show="!loggedInUser" @click.native="showReplyReply()"/>
                     
-                    <AppButtonDelete v-show="loggedInUser"
-                        :edit = "edit"
-                    />
+                    <AppButtonDelete v-show="loggedInUser"/>
 
                     <AppButtonEdit v-show="loggedInUser"
                          @click.native="editComment()"
-                         :edit = "edit"
                     />
                     
                 </div>
@@ -137,7 +134,13 @@ export default {
             }
             return resultado
         },
- 
+        opacity(){
+            let resultado = ''
+            if(this.edit){
+                resultado = 'opacity'
+            }
+            return resultado
+        }
     }
 }
 </script>

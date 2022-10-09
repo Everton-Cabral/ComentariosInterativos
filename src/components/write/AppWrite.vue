@@ -4,7 +4,7 @@
                 class="comentario-usuario"
                 cols="30" rows="10" 
                 placeholder="Add a coment..."
-                v-model="contentReply">
+                v-model="content">
                
         </textarea>
 
@@ -13,7 +13,14 @@
          </span>
         
          
-         <AppButtonSubmit :buttonName="buttonNameSubmit" @click.native="reply()"/>
+         <AppButtonSubmit v-if="buttonNameSubmit == 'SEND'" 
+            :buttonName="buttonNameSubmit"  
+            @click.native="comment()"
+        />
+
+         <AppButtonSubmit v-else  :buttonName="buttonNameSubmit"
+             @click.native="reply()"
+        />
         
    </div>
 </template>
@@ -38,7 +45,7 @@ export default {
     },
     data() {
         return {
-            contentReply: this.comentarioUsername ? `@${this.comentarioUsername}` : '',
+            content: this.comentarioUsername ? `@${this.comentarioUsername}` : '',
            
         };
     },
@@ -48,7 +55,7 @@ export default {
 
                 idComment: this.comentarioId,
                 replyingTo: this.comentarioUsername,
-                content: this.contentReply.replace(`@${this.comentarioUsername}`, ''),
+                content: this.content.replace(`@${this.comentarioUsername}`, ''),
 
             };
             
@@ -57,6 +64,10 @@ export default {
             this.$emit("noShowReplyReply");
             this.contentReply =  this.comentarioUsername ? `@${this.comentarioUsername}` : '';
             
+        },
+        comment(){       
+          this.$store.commit('comment', this.content);
+          this.content = ''
         }
     },
     computed: {
