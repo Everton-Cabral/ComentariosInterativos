@@ -27,7 +27,7 @@ $font-color-button-delete-edit: hsl(357, 100%, 86%);
     font-weight: bold;
 }
 .opacity{
-    opacity: 0.5;
+    opacity: 0.4;
 }
 @each $margin-top in (15,20){
     .m-top-#{$margin-top}{
@@ -60,6 +60,8 @@ $font-color-button-delete-edit: hsl(357, 100%, 86%);
     @extend .d-flex;
     @extend .a-i-center;
 }
+
+
 textarea{
     @extend .m-top-15;
     @extend .b-r-10;
@@ -131,3 +133,21 @@ textarea{
     }
 }
 
+.buttonScore{
+    background-color:  $background-principal;
+   @include dimensoesButton;
+}
+
+.score{
+    font-weight: bold;
+    margin: 0px 15px 0px 15px;
+}
+
+.btnScore{
+    padding: 2px;
+    font-size: 15px;
+}
+.btnScore:hover{
+
+    cursor: pointer;
+}

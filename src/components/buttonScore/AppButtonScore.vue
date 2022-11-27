@@ -1,8 +1,8 @@
 <template>
-    <div class="buttonScore">
-        +
-        <span class="score">{{score}}</span>
-        -
+    <div>
+       
+        <span>{{score}}</span>
+      
     </div>
 </template>
 
@@ -14,6 +14,6 @@ export default {
 }
 </script>
 
-<style src="./style.scss" lang="scss" scoped />
+
   
 

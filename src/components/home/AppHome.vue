@@ -3,8 +3,11 @@
 
     
     <div id="home">
+                <div class="card">
+                    <AppDelete v-show="deleting"/>
+
+                </div>
            
-                 <AppDelete />
            
 
            
@@ -29,14 +32,14 @@
 
     import AppComentarios from '../comentarios/AppComentarios.vue';
     import AppWrite from '../write/AppWrite.vue';
-import AppDelete from '../delete/AppDelete.vue';
+    import AppDelete from '../delete/AppDelete.vue';
 
 export default {
     components: { AppComentarios, AppWrite, AppDelete },
 
     data(){
         return {
-            deleting: true
+            
         }
     },
     
@@ -46,6 +49,9 @@ export default {
         },
         currentUser(){
             return this.$store.state.data.currentUser
+        },
+        deleting(){
+            return this.$store.state.deleting
         },
         opacity(){
             let resultado

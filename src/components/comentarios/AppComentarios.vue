@@ -31,7 +31,20 @@
             </div>
 
             <div class="footer">
-                <AppButtonScore v-show="!edit" :score="comentario.score" />
+
+                <div class="buttonScore" v-show="!edit">
+
+                    <div class="btnScore" @click="scoreComment('+')" >
+                        +
+                    </div>
+                    
+                    <AppButtonScore :score="comentario.score" class="score" />
+
+                    <div class="btnScore" @click="scoreComment('-')">
+                        -
+                    </div>
+                    
+                </div>
 
                 <div class="leftFooter" :class="opacity">
 
@@ -39,7 +52,7 @@
                         @click.native="writeAnswer()"
                     />
     
-                    <AppButtonDelete v-show="loggedInUser"/>
+                    <AppButtonDelete v-show="loggedInUser" @click.native="deleteComments"/>
     
                     <AppButtonEdit v-show="loggedInUser"
                         @click.native="editComment"    
@@ -121,6 +134,21 @@ export default {
             }
             this.$store.commit('editComment', params);
             this.edit = false
+        },
+        deleteComments(){
+            let params = {
+                comentarioId: this.comentario.id,
+                tipo: 'comentario'
+            }
+            this.$store.commit('delete', params)
+        },
+      
+        scoreComment(tipo){
+            let params = {
+                comentarioId: this.comentario.id,
+                tipo: tipo
+            }
+            this.$store.commit('score', params)
         }
     },
     computed: {
@@ -136,6 +164,7 @@ export default {
         },
         opacity(){
             let resultado = ''
+           
             if(this.edit){
                 resultado = 'opacity'
             }

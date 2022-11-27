@@ -38,12 +38,25 @@
 
             <div class="footer">
 
-                <AppButtonScore :score="reply.score" v-show="!edit"/>
+                <div class="buttonScore" v-show="!edit">
+                    
+                    <div class="btnScore" @click="scoreReply('+')">
+                        +
+                    </div>
+
+                    <AppButtonScore :score="reply.score" class="score"/>
+
+                    <div class="btnScore" @click="scoreReply('-')">
+                         -
+                    </div>
+
+                </div>
 
                 <div class="leftFooter" :class="opacity">
                     <AppButtonReply  v-show="!loggedInUser" @click.native="showReplyReply()"/>
                     
-                    <AppButtonDelete v-show="loggedInUser"/>
+                    <AppButtonDelete v-show="loggedInUser" 
+                        @click.native="deleteReply"/>
 
                     <AppButtonEdit v-show="loggedInUser"
                          @click.native="editComment()"
@@ -123,6 +136,23 @@ export default {
             
             this.$store.commit('editReply', params);
             this.edit = false
+        },
+        deleteReply(){
+            let params = {
+                id: this.reply.id,
+                tipo: 'reply',
+                comentarioId: this.comentarioId
+            }
+            
+            this.$store.commit('delete', params)
+        },
+        scoreReply(tipo){
+            let params = {
+                comentarioId: this.comentarioId,
+                tipo: tipo,
+                idReply: this.reply.id
+            }
+            this.$store.commit('score', params)
         }
     },
     computed:{
