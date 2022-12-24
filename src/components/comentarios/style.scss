@@ -1,7 +1,7 @@
 @import '../../scss/style.scss';
 
 .comentarios {
-    @include estruturaComentario
+    @include estruturaComentario;
 }
 
 .replies{
@@ -22,3 +22,15 @@
     @extend .jus-cont-space-between;
 }
 
+@media only screen and (min-width: 800px) {
+    .comentarios {
+      width: 752px;
+      margin: 0px;
+       
+    }
+    .replies{
+        margin-left: 60px;
+        padding-left:40px;
+    }
+
+  }

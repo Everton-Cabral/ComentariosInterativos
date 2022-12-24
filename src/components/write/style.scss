@@ -23,3 +23,8 @@
     color: $font-color-destaque;
     @extend .font-bold;
 }
+@media only screen and (min-width: 800px) {
+    .write{
+      width: 752px;   
+    }
+  }

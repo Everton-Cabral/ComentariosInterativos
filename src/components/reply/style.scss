@@ -23,3 +23,12 @@ em{
     font-style: normal;
     margin-right: 0px;
 }
+
+@media only screen and (min-width: 800px) {
+    .reply {
+      width: 645px;
+      margin: 0px;
+      margin-bottom: 10px;
+    
+    }
+  }

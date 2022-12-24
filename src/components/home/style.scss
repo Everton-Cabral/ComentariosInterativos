@@ -4,9 +4,28 @@
     @include padraoInicial;
     background-color: $background-principal;
     padding: 20px 15px 15px 15px;
+  
 }
 .card{
     width: 100%;
     display: flex;
     justify-content: center;
 }
+
+// @media only screen and (min-width: 600px) {
+//     #home {
+//         padding: 30px 30% 50px 30%;
+//     }
+//   }
+
+@media only screen and (min-width: 600px) {
+    #home {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        
+    }
+  }

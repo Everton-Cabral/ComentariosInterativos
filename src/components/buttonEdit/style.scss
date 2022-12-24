@@ -9,3 +9,7 @@
 img{
     @extend .m-right-5;
 }
+
+.buttonEdit :hover{
+    cursor: pointer;
+}
